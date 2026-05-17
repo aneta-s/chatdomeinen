@@ -159,9 +159,17 @@
 
   .domains {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 64px;
+  }
+
+  @media (max-width: 860px) {
+    .domains { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .domains { grid-template-columns: 1fr; }
   }
 
   .domain-card {
@@ -194,10 +202,13 @@
 
   .domain-name {
     font-family: 'Syne', sans-serif;
-    font-size: 22px;
+    font-size: clamp(14px, 1.6vw, 22px);
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .domain-name .ext { color: var(--accent); }
