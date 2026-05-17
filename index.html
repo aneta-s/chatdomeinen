@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Chat Domeinen Te Koop</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060f09;
+    --surface: #0d1a10;
+    --card: #112216;
+    --accent: #22c55e;
+    --accent2: #16a34a;
+    --accent3: #4ade80;
+    --text: #edfbf1;
+    --muted: #7aad8a;
+    --border: rgba(34,197,94,0.1);
+    --glow: rgba(34,197,94,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(34,197,94,0.10) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 20px;
+    padding: 5px 16px;
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-head h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .section-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .domains {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .domain-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .domain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .domain-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34,197,94,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(34,197,94,0.1);
+  }
+
+  .domain-card:hover::before { opacity: 1; }
+
+  .domain-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .domain-name .ext { color: var(--accent); }
+
+  .domain-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .domain-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .price-range {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .price-range strong {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+  }
+
+  .interest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent2);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .interest-btn:hover {
+    background: var(--accent);
+    transform: scale(1.03);
+  }
+
+  .interest-btn svg {
+    width: 13px; height: 13px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .all-section { margin-bottom: 80px; }
+
+  .all-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .all-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--muted);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .all-item:hover {
+    color: var(--text);
+    border-color: rgba(34,197,94,0.25);
+  }
+
+  .all-item .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+
+  /* Contact sectie */
+  .contact-section {
+    margin-bottom: 80px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 40px;
+  }
+
+  @media (max-width: 600px) {
+    .contact-section { padding: 32px 20px; }
+  }
+
+  .contact-section .intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .contact-section .intro h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .contact-section .intro p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .badge-item svg {
+    width: 16px; height: 16px;
+    stroke: var(--accent); fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 580px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  input, select, textarea {
+    background: var(--surface);
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.6; }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.08);
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237aad8a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  select option { background: #0d1a10; color: var(--text); }
+
+  textarea { resize: vertical; min-height: 110px; }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn:hover { opacity: 0.9; transform: scale(1.01); }
+
+  .submit-btn svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 24px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 12px;
+    color: var(--accent3);
+    font-size: 15px;
+    margin-top: 16px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeUp 0.5s ease both; }
+  .domains { animation: fadeUp 0.5s ease 0.1s both; }
+  .all-section { animation: fadeUp 0.5s ease 0.2s both; }
+  .contact-section { animation: fadeUp 0.5s ease 0.25s both; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="tag">Premium .nl domeinen te koop</div>
+    <h1>Premium<br><span>Chat Domeinen</span></h1>
+    <p class="subtitle">Een selectie waardevolle Nederlandse domeinnamen rondom AI-chat, klantenservice en conversational tech — direct beschikbaar, geen tussenpersoon nodig.</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">22</div>
+        <div class="stat-label">Domeinen beschikbaar</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">.nl</div>
+        <div class="stat-label">Nederlandse markt</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2023</div>
+        <div class="stat-label">Geregistreerd</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Uitgelichte domeinen -->
+  <div class="section-head"><h2>Uitgelichte domeinen</h2></div>
+  <div class="domains">
+
+    <div class="domain-card">
+      <div class="domain-name">jouwchat<span class="ext">.nl</span></div>
+      <p class="domain-desc">Persoonlijk, kort en memorabel. Ideaal voor AI-chattools, klantenservice platforms of conversational apps gericht op de Nederlandse markt.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€400 – €800</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chatspecialist<span class="ext">.nl</span></div>
+      <p class="domain-desc">Professioneel en direct. Sterk voor bureaus, consultants en B2B-bedrijven in klantenservice of AI-implementatie.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€300 – €600</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chatklantenservice<span class="ext">.nl</span></div>
+      <p class="domain-desc">Exact-match zoekwoord. Hoge SEO-waarde voor software providers in live chat en AI-klantenondersteuning.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€300 – €500</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chatassist<span class="ext">.nl</span></div>
+      <p class="domain-desc">Schoon, professioneel en internationaal begrijpelijk. Perfect voor AI-assistenten, helpdesk-software of chatbot-diensten.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€250 – €500</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chatzilla<span class="ext">.nl</span></div>
+      <p class="domain-desc">Energieke merknaam met startup-uitstraling. Ideaal voor een chat-app of AI-product gericht op een jong Nederlands publiek.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€200 – €450</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chattalent<span class="ext">.nl</span></div>
+      <p class="domain-desc">Sterk domein voor HR-tech en recruitment. Ideaal voor platforms die AI-chat inzetten bij sollicitaties, talentontwikkeling of coaching.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€200 – €400</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-name">chattech<span class="ext">.nl</span></div>
+      <p class="domain-desc">Clean en veelzijdig technologiedomein. Geschikt voor SaaS-bedrijven, AI-platformen of techbedrijven die chat centraal stellen in hun product.</p>
+      <div class="domain-footer">
+        <div class="price-range">
+          <strong>€200 – €400</strong>
+          Vraagprijs
+        </div>
+        <a href="#contact" class="interest-btn">
+          Interesse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Alle domeinen -->
+  <div class="all-section">
+    <div class="section-head"><h2>Alle beschikbare domeinen</h2></div>
+    <div class="all-grid">
+      <div class="all-item"><span class="dot"></span>chatanalyse.nl</div>
+      <div class="all-item"><span class="dot"></span>chatassist.nl</div>
+      <div class="all-item"><span class="dot"></span>chatdeveloper.nl</div>
+      <div class="all-item"><span class="dot"></span>chatensurance.com</div>
+      <div class="all-item"><span class="dot"></span>chatfinance.nl</div>
+      <div class="all-item"><span class="dot"></span>chatgemak.nl</div>
+      <div class="all-item"><span class="dot"></span>chatklantenservice.nl</div>
+      <div class="all-item"><span class="dot"></span>chatklik.nl</div>
+      <div class="all-item"><span class="dot"></span>chatmeester.nl</div>
+      <div class="all-item"><span class="dot"></span>chatmessenger.nl</div>
+      <div class="all-item"><span class="dot"></span>chatnederland.com</div>
+      <div class="all-item"><span class="dot"></span>chatnieuws.nl</div>
+      <div class="all-item"><span class="dot"></span>chatoffertes.nl</div>
+      <div class="all-item"><span class="dot"></span>chatpitch.nl</div>
+      <div class="all-item"><span class="dot"></span>chatrecruit.nl</div>
+      <div class="all-item"><span class="dot"></span>chatspecialist.nl</div>
+      <div class="all-item"><span class="dot"></span>chatstartpagina.nl</div>
+      <div class="all-item"><span class="dot"></span>chattalent.nl</div>
+      <div class="all-item"><span class="dot"></span>chattech.nl</div>
+      <div class="all-item"><span class="dot"></span>chatvlot.nl</div>
+      <div class="all-item"><span class="dot"></span>chatzilla.nl</div>
+      <div class="all-item"><span class="dot"></span>jouwchat.nl</div>
+    </div>
+  </div>
+
+  <!-- Contactformulier -->
+  <div class="contact-section" id="contact">
+    <div class="intro">
+      <h2>Interesse in een domein?</h2>
+      <p>Laat je gegevens achter — geen account nodig. Ik neem binnen 1-2 werkdagen contact met je op. Betaling veilig via iDEAL of escrow mogelijk.</p>
+    </div>
+
+    <div class="trust-badges">
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Veilige overdracht
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        iDEAL mogelijk
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Geen account nodig
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Reactie binnen 48 uur
+      </div>
+    </div>
+
+    <form action="https://formspree.io/f/mykvglee" method="POST" id="contactForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="naam">Jouw naam *</label>
+          <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mailadres *</label>
+          <input type="email" id="email" name="email" placeholder="jan@bedrijf.nl" required>
+        </div>
+        <div class="form-group">
+          <label for="domein">Gewenst domein *</label>
+          <select id="domein" name="domein" required>
+            <option value="" disabled selected>Kies een domein...</option>
+            <optgroup label="Uitgelichte domeinen">
+              <option>jouwchat.nl — €400-800</option>
+              <option>chatspecialist.nl — €300-600</option>
+              <option>chatklantenservice.nl — €300-500</option>
+              <option>chatassist.nl — €250-500</option>
+              <option>chatzilla.nl — €200-450</option>
+              <option>chattalent.nl — €200-400</option>
+              <option>chattech.nl — €200-400</option>
+            </optgroup>
+            <optgroup label="Overige domeinen">
+              <option>chatanalyse.nl</option>
+              <option>chatdeveloper.nl</option>
+              <option>chatensurance.com</option>
+              <option>chatfinance.nl</option>
+              <option>chatgemak.nl</option>
+              <option>chatklik.nl</option>
+              <option>chatmeester.nl</option>
+              <option>chatmessenger.nl</option>
+              <option>chatnederland.com</option>
+              <option>chatnieuws.nl</option>
+              <option>chatoffertes.nl</option>
+              <option>chatpitch.nl</option>
+              <option>chatrecruit.nl</option>
+              <option>chatstartpagina.nl</option>
+              <option>chatvlot.nl</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bod">Jouw bod (optioneel)</label>
+          <input type="text" id="bod" name="bod" placeholder="bijv. €350">
+        </div>
+        <div class="form-group full">
+          <label for="bericht">Bericht (optioneel)</label>
+          <textarea id="bericht" name="bericht" placeholder="Vertel iets over jouw project of gebruik..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Verstuur aanvraag
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+      <p class="form-note">Jouw gegevens worden alleen gebruikt om contact op te nemen. Geen spam, geen nieuwsbrief.</p>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      ✓ Bedankt! Je aanvraag is ontvangen. Ik neem zo snel mogelijk contact met je op.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 · Premium chat domeinen · Directe verkoop · Veilige overdracht via escrow
+</footer>
+
+<script>
+  // Smooth scroll voor Interesse knoppen
+  document.querySelectorAll('a[href="#contact"]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Formspree AJAX submit
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Bezig met verzenden...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        btn.textContent = 'Probeer opnieuw';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Probeer opnieuw';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
